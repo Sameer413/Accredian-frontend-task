@@ -48,27 +48,22 @@ const ReferralModal = () => {
           withCredentials: true,
         }
       );
-
-      console.log(resp.status);
       
-      if (resp.status === 200) {
-        toast.success("Referred Successfully!");
-        setReferral({
-          // Reset referral state to initial values
-          referrerName: "",
-          referrerEmail: "",
-          referrerPhone: "",
-          referrerRelationship: "",
-          refereeName: "",
-          refereeEmail: "",
-          refereePhone: "",
-          courseInterest: "",
-          message: "",
-        });
-        referralModal.onClose();
-      } else {
-        toast.error("Internal server error!");
-      }
+      toast.success("Referred Successfully!");
+      setReferral({
+        // Reset referral state to initial values
+        referrerName: "",
+        referrerEmail: "",
+        referrerPhone: "",
+        referrerRelationship: "",
+        refereeName: "",
+        refereeEmail: "",
+        refereePhone: "",
+        courseInterest: "",
+        message: "",
+      });
+
+      referralModal.onClose();
     } catch (error) {
       console.error("Error submitting referral:", error);
       toast.error("Failed to refer. Please try again later.");
