@@ -39,7 +39,7 @@ const ReferralModal = () => {
     try {
       const resp = await axios.post(
         // "https://accredian-backend-task-7n6s52pif-sameer844s-projects.vercel.app/create-referral",
-        process.env.BACKEND_URI!,
+        "https://accredian-backend-task-tua8.onrender.com/create-referral",
         referral,
         {
           headers: {
