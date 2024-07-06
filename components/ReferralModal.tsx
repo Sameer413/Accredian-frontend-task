@@ -49,6 +49,8 @@ const ReferralModal = () => {
         }
       );
 
+      console.log(resp.status);
+      
       if (resp.status === 200) {
         toast.success("Referred Successfully!");
         setReferral({
