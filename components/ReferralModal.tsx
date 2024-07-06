@@ -5,6 +5,7 @@ import { FaPlus } from "react-icons/fa6";
 import Input from "./Input";
 import { FormEvent, useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 type ReferType = {
   referrerName: string;
@@ -34,20 +35,42 @@ const ReferralModal = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Add your form submission logic here
-    const resp = await axios.post(
-      "https://accredian-backend-task-7n6s52pif-sameer844s-projects.vercel.app/create-referral",
-      referral,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      }
-    );
-    console.log(resp);
 
-    // referralModal.onClose();
+    try {
+      const resp = await axios.post(
+        // "https://accredian-backend-task-7n6s52pif-sameer844s-projects.vercel.app/create-referral",
+        process.env.BACKEND_URI!,
+        referral,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+
+      if (resp.status === 200) {
+        toast.success("Referred Successfully!");
+        setReferral({
+          // Reset referral state to initial values
+          referrerName: "",
+          referrerEmail: "",
+          referrerPhone: "",
+          referrerRelationship: "",
+          refereeName: "",
+          refereeEmail: "",
+          refereePhone: "",
+          courseInterest: "",
+          message: "",
+        });
+        referralModal.onClose();
+      } else {
+        toast.error("Internal server error!");
+      }
+    } catch (error) {
+      console.error("Error submitting referral:", error);
+      toast.error("Failed to refer. Please try again later.");
+    }
   };
 
   return (

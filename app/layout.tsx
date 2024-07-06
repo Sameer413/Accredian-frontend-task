@@ -5,6 +5,7 @@ import ContactNavbar from "@/components/ContactNavbar";
 import MainNavbar from "@/components/MainNavbar";
 import Footer from "@/components/Footer";
 import ReferralModal from "@/components/ReferralModal";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 const roboto = Roboto({
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${roboto.variable} h-full`}>
+        <Toaster position="top-center" reverseOrder={false}/>
         <ReferralModal />
         <ContactNavbar />
         <MainNavbar />
