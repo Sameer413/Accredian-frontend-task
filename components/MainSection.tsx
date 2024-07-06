@@ -5,8 +5,11 @@ import Refer from "./Refer";
 import Support from "./Support";
 import Benefits from "./Benefits";
 import FAQ from "./FAQ";
+import useReferralModal from "@/hooks/useReferralModal";
 
 const MainSection = () => {
+  const referralModal = useReferralModal();
+
   return (
     <section className="">
       <MaxWidthWrapper className="h-auto">
@@ -46,7 +49,10 @@ const MainSection = () => {
           </div>
 
           <div className="flex justify-center py-1 pb-5">
-            <Button className="text-xl font-normal font-Roboto leading-6 px-8">
+            <Button
+              onClick={() => referralModal.onOpen()}
+              className="text-xl font-normal font-Roboto leading-6 px-8"
+            >
               Refer Now
             </Button>
           </div>
@@ -57,7 +63,6 @@ const MainSection = () => {
       <FAQ />
 
       <Support />
-
     </section>
   );
 };

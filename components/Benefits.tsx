@@ -5,9 +5,12 @@ import { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import Button from "./Button";
 import Toggle from "./Toggle";
+import useReferralModal from "@/hooks/useReferralModal";
 
 const Benefits = () => {
   const [active, setActive] = useState<number>(1);
+  const referralModal = useReferralModal();
+
   return (
     <div id="id-benefits" className="my-10 mb-28">
       <MaxWidthWrapper>
@@ -113,7 +116,10 @@ const Benefits = () => {
         </div>
 
         <div className="flex justify-center mt-5">
-          <Button className="w-[236px] flex justify-center py-3">
+          <Button
+            onClick={() => referralModal.onOpen()}
+            className="w-[236px] flex justify-center py-3"
+          >
             Refer Now
           </Button>
         </div>
